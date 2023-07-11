@@ -1,0 +1,33 @@
+@mixin reset {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+@mixin fontZiFontWe ($fontZi,$fontWe){
+    font-size:$fontZi;
+    font-weight:$fontWe;
+    
+}
+
+@mixin animation-query ($duration, $vista) {
+   
+    .BackImgAni{
+        @if $vista == desktop{
+            @media only screen and (max-width:1024px){
+                animation-duration: $duration;
+            }
+        }
+        @else if $vista == tablet {
+            @media only screen and (max-width:767px){
+                animation-duration: $duration;
+            }
+        }
+        @else if $vista == mobile {
+            @media only screen and (max-width:576px){
+                animation-duration: $duration;
+            }
+        }
+    }
+    
+}

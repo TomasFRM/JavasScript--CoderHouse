@@ -1,0 +1,19 @@
+
+@import "./variables";
+@import "./mixins";
+@import "./body";
+@import "./header";
+@import "./main";
+@import "./footer";
+@import "./_404";
+
+*{
+    @include reset
+}
+
+@include animation-query (80s,desktop);
+
+@include animation-query (60s,tablet);
+
+ @include animation-query (30s,mobile);
+

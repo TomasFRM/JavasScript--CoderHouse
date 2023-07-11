@@ -1,0 +1,13 @@
+
+.navbar-brand{
+    font-family: 'Courgette', cursive;
+    color: black;   
+}
+
+.navbar{
+    padding: 0px;
+}
+
+.BgcH{
+    background-color: map-get($background-color , "header");   
+}

@@ -1,0 +1,25 @@
+
+.FormatoLi{
+    @include fontZiFontWe(0.9rem,700);
+    list-style-type: none;
+    font-family: 'Cuprum', sans-serif;
+    list-style: none;
+}
+
+// Poner Variable
+
+footer{
+    background-color:map-get($background-color , "footer" );
+}
+
+.bi-youtube{
+    color: black;
+}
+
+.bi-instagram{
+    color:black;
+}
+
+.bi-facebook{
+    color: black;
+}

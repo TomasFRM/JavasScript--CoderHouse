@@ -4,14 +4,232 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Liquidador de Sueldos</title>
-    <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/main.js" defer></script> 
-    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <!-- CDN Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- cdn Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <!-- metas -->
+    <meta name="description" content="Liquidador de Sueldos Mazu, una nueva forma de liquidar sueldos. Consulta por nuestros servicios.">
+    <meta name="keywords"  content="sueldos, liquidador, liquidacion, empleados, empresas">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="./css/estilos.css">
+    <link rel="shortcut icon" href="./imagenes/logo-favicon-32x32.png">
+    <title>Liquidador de Sueldos - Inicio</title>
 </head>
-<body>
-    <h1> Bienvenidos al liquidador de Sueldos</h1>
+<body class="container-fluid" >
     
+<!--Cabecera-->
 
+    <header>
+        <nav class="navbar navbar-expand-lg bg-light ">
+            <div class="container-fluid BgcH">
+              <a class="navbar-brand d-inline-block align-text-top ps-2" href="./index.html"><img src="imagenes/logogm.png" class="LogoImg" alt="Logo" > Liquidador de Sueldos</a>
+              <button class="navbar-toggler me-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon "></span>
+              </button>
+              <div class="collapse navbar-collapse justify-content-end pe-2" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./pages/liquidacion-manual.html"">Liquidación Manual</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./pages/liquidacion-masiva.html">Liquidación Masiva</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./pages/agregando-empleados.html">Agregar Empleado</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="./pages/consulta-de-empleados.html">Consulta de Empleados</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
+    </header>
+<!--Cuerpo principal--> 
+
+    <main class="pb-2 BackImgAni BodyBackgroundColor">
+        <section class="row">
+            <article class="col">
+                <div class="imgPrincipal">
+                  <img src="imagenes/slider_sueldos_arg.jpg" alt="Liquidador de Sueldos" class="img-fluid">
+                  <div class="texto-encima col-md-5 col-12 ">Liquidador de Sueldos</div> 
+                </div>
+            </article>
+        </section>
+        <section class="row">
+            <article class="col">
+                <h1 class="text-center mt-5"> Liquidador de Sueldos Mazu, una nueva forma de liquidar sueldos </h1>
+                <p>Gracias a las nuevas tecnologías y formas de comunicación, hemos logrado crear un liquidador de sueldos para todos los empelados de Farmacia dentro y fuera de convenio.</p>
+                <p>Estamos trabajando para desarrollar una metodología ágil y simple de usar para que tu empresa pueda realizar las liquidaciones de sueldo de forma ágil y simple, sin errores y fácil de controlar. Utilizando nuevas tecnologías, practicas tradicionales y nuevas formas de pensar les ofrecemos el mejor servicio. Próximamente vamos a estar compartiendo todos los detalles sobre nuestras nuevas políticas y metodologías para demostrar nuestro compromiso con la sociedad y nuestros clientes. Enterate de todas las novedades y nuevos productos en nuestras redes y Youtube</p>
+            </article>
+        </section>
+        <section>
+          <div >
+            <h2 class="text-center mt-5 mb-5 ms-2 me-2">Mira nuestros productos más llevados:</h2>
+          </div>
+          <div id="ImgSecIndex">
+            <div>
+                <div class="row">              
+                  <article class="col-6 col-lg-3">
+                    <div data-aos="fade-up" data-aos-duration="2000">
+                      <div class="card Main__ImgSec" style="width: 18rem;">
+                        <img class="card-img-top " src="./imagenes/monedasola.jpg" alt="Card image cap">
+                        <div class="card-body text-center">
+                          <h5 class="card-title">Liquidación Manual</h5>
+                          <p class="card-text">En esta opción vas a liquidar el sueldo de 1 solo empleado ingresando los datos de forma manual.</p>
+                          <a href="./pages/liquidacion-manual.html" class="btn btn-primary">Vamos a liquidar</a>
+                        </div>
+                      </div>
+                      
+                    </div>
+                  </article>
+                  <article class="col-6 col-lg-3" >
+                    <div data-aos="fade-up" data-aos-duration="2000">
+                      <div class="card Main__ImgSec" style="width: 18rem;">
+                        <img class="card-img-top " src="./imagenes/monedasvarias.jpg" alt="Card image cap">
+                        <div class="card-body text-center">
+                          <h5 class="card-title">Liquidación Masiva</h5>
+                          <p class="card-text">En esta opción vas a liquidar el sueldo todos los empleados registrados.</p>
+                          <a href="./pages/liquidacion-masiva.html" class="btn btn-primary">Vamos a liquidar</a>
+                        </div>
+                      </div> 
+                    </div>
+                  </article>
+                  <article class="col-6 col-lg-3" >
+                    <div data-aos="fade-up" data-aos-duration="2000">
+                      <div class="card Main__ImgSec" style="width: 18rem;">
+                        <img class="card-img-top " src="./imagenes/agregar.jpg" alt="Card image cap">
+                        <div class="card-body text-center">
+                          <h5 class="card-title">Agregar Empleados</h5>
+                          <p class="card-text">En esta opción vas a agregar empleados a la base de datos.</p>
+                          <a href="./pages/agregando-empleados.html" class="btn btn-primary">Agregar Empleados</a>
+                        </div>
+                      </div>  
+                    </div>
+                  </article>
+                  <article class="col-6 col-lg-3" >
+                    <div data-aos="fade-up" data-aos-duration="2000">
+                      <div class="card Main__ImgSec" style="width: 18rem;">
+                        <img class="card-img-top " src="./imagenes/consulta.jpg" alt="Card image cap">
+                        <div class="card-body text-center">
+                          <h5 class="card-title">Consultar Empleados</h5>
+                          <p class="card-text">En esta opción vas a poder acceder a todos los empleados registrados en la base de datos al dia de hoy</p>
+                          <a href="./pages/consulta-de-empleados.html" class="btn btn-primary">Consultar Empleados</a>
+                        </div>
+                      </div> 
+                    </div>  
+                  </article>    
+                </div>
+              </div>
+            </div>
+<!-- Carrusel para mediaQ -->
+          <div data-aos="fade-up" data-aos-duration="2000">
+            <div id="carouselExampleIndicators" class="carousel slide mb-5 mt-5 ms-5 me-5" data-bs-ride="true">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <div class="card Main__ImgSec d-block w-100">
+                      <img class="card-img-top " src="./imagenes/monedasola.jpg" alt="Card image cap">
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Liquidación Manual</h5>
+                        <p class="card-text">En esta opción vas a liquidar el sueldo de 1 solo empleado ingresando los datos de forma manual.</p>
+                        <a href="./pages/liquidacion-manual.html" class="btn btn-primary">Vamos a liquidar</a>
+                      </div>
+                    </div>
+                    
+                  </div>
+                  <div class="carousel-item">
+                    <div class="card Main__ImgSec d-block w-100">
+                      <img class="card-img-top " src="./imagenes/monedasvarias.jpg" alt="Card image cap">
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Liquidación Masiva</h5>
+                        <p class="card-text">En esta opción vas a liquidar el sueldo todos los empleados registrados.</p>
+                        <a href="./pages/liquidacion-masiva.html" class="btn btn-primary">Vamos a liquidar</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="card Main__ImgSec d-block w-100">
+                      <img class="card-img-top " src="./imagenes/agregar.jpg" alt="Card image cap">
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Agregar Empleados</h5>
+                        <p class="card-text">En esta opción vas a agregar empleados a la base de datos.</p>
+                        <a href="./pages/agregando-empleados.html" class="btn btn-primary">Agregar Empleados</a>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <div class="card Main__ImgSec d-block w-100">
+                      <img class="card-img-top " src="./imagenes/consulta.jpg" alt="Card image cap">
+                      <div class="card-body text-center">
+                        <h5 class="card-title">Consultar Empleados</h5>
+                        <p class="card-text">En esta opción vas a poder acceder a todos los empleados registrados en la base de datos al dia de hoy</p>
+                        <a href="./pages/consulta-de-empleados.html" class="btn btn-primary">COnsultar Empleados</a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+          </div>
+
+
+        </section>
+       
+    </main>
+
+<!--pie de pag-->
+
+    <footer class="pt-2 ">
+      <div class="d-flex row text-center align-items-center">
+        <section class="col">
+          <ul class="FormatoLi">
+            <li><a href="./index.html"><img src="./imagenes/logogm.png" alt="Logo" class="LogoImg"></a></li>
+            <li> <p >Copyright Tomas F. Rodriguez</p>  </li>
+          </ul>
+        </section>
+        <section class="col me-2" >
+            <ul class="FormatoLi text-center">
+                <li>Telefono: 011-4790-7632</li>
+                <li>Mail: info@liquidadordesueldos.com.ar</li>
+                <li>Dirección: Av. Mapiu 2547 , Vicente Lopez - Buenos Aires (oficina central)</li>
+            </ul>
+        </section>
+        <section class="col ">
+            <ul class="FormatoLi pe-3 row">
+                <li class="col"><a href="https://www.youtube.com/channel/UCeHReBIekZ9Etwixu1LZOBQ" target="_blank"><i class="bi bi-youtube fs-1"></i></a></li>
+                <li class="col"><a href="https://www.instagram.com/tomas_rodriguezmaziere/" target="_blank"><i class="bi bi-instagram fs-1"></i></a></li>
+                <li class="col"><a href="https://www.facebook.com/tomas.rodriguezmaziere" target="_blank"><i class="bi bi-facebook fs-1"></i></a></li>
+            </ul>
+        </section>
+      </div>
+    </footer>
+    
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <!-- AOS para animaciones -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init();
+    </script>
 </body>
 </html>

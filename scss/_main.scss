@@ -1,0 +1,130 @@
+
+#carouselExampleIndicators{
+    display: none;
+}
+
+
+
+// Transformacion imagenes Sec
+
+#ImgSecIndex{
+    padding-left: 10px;
+}
+
+.Main__ImgSec{
+    width: 90%;
+    transform:
+    perspective(750px)
+    translate3d(0px, 0px, -250px)
+    scale(0.9, 0.9);
+    border-radius: 20px;
+    border: 5px solid #090808;
+    box-shadow: 0 70px 40px -20px rgba(0, 0, 0, 0.2);
+    transition: 0.5s ease-in-out transform;}
+    .Main__ImgSec:hover {
+        transform: translate3d(0px, 0px, -250px);
+      }
+
+// Animacion
+
+.BackImgAni{
+    background-image: url(../imagenes/trigo.com.png);
+    animation-name: AnimacionTrigo;
+    animation-duration: 100s;
+    animation-delay: 0s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease;
+    z-index: 1;
+  }
+
+  @keyframes AnimacionTrigo {
+    0%{
+        background-position:0% 100% ;   
+    }
+    50%{  
+        background-position:50% 100% ;
+    }
+    100%{ background-position:100% 100% ;
+
+    }
+    
+  }
+
+// Textos  
+.textos{
+    font-family: 'Courgette', cursive;
+    color: black;
+    text-align: center;
+}
+
+h1 {
+    @extend .textos;
+    font-size:  calc(1.5rem + 1.5vw);
+    font-weight: 800 ;
+    padding: $padding-general;
+}
+
+
+h2 {
+    @extend .textos;
+    font-size: calc(1.2rem + 1.5vw);
+    font-weight: 700;
+    padding: 0.9 em;
+}
+
+p {
+    @include fontZiFontWe(1rem,700);
+    font-family: Helvetica, Arial, sans-serif;
+    color: black;
+    line-height: 2em;
+    padding: $padding-general ;
+}
+
+// Form config
+
+legend{
+    @extend .textos;
+    @include fontZiFontWe(2rem,800);
+    padding: $padding-general;
+}
+.btn-primary{
+    background-color: map-get($background-color , "header");
+    border: none;
+    padding: 16px 32px;
+    margin-bottom: 1rem;
+}
+.btn-primary:hover{
+    background-color: #03d78a;  
+}
+
+.form-control:focus {
+    background-color:rgba(223,255,193,1);
+}
+
+// Animacion Mapa 
+
+.animate__zoomIn{
+    animation-duration: 2s;
+}
+
+// Carrusel de imagenes MEDIAQ
+
+@media only screen and ( max-width: 650px){
+    #carouselExampleIndicators{
+        display: block;
+    }
+
+    #ImgSecIndex{
+        display: none;
+    }
+
+}
+
+// Tabla
+
+.table{
+    width: 90vw;
+    font-weight: 700;
+    color: black;
+    background: map-get($background-color, "tabla");
+}

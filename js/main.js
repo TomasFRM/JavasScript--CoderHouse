@@ -27,16 +27,34 @@ let puesto = 0
 let nombreYApellido = "NA"
 let adicionalTitulo = 0
 let seguir = false
+let nuevoLegajos = 0
+let numeroDeLegajo = 0
 
-let listaEmpleado = [
+
+//Array y constructor
+
+class creandoListaEmpleado {
+    constructor(Legajo, Puesto, HorasExt, NYA, SueldoBasico){
+        this.Legajo = Legajo;
+        this.Puesto = Puesto;
+        this.HorasExt = HorasExt;
+        this.NYA = NYA.toUpperCase();
+        this.SueldoBasico = SueldoBasico
+    };
+}
+
+const listaEmpleado = [
     {Legajo : "1", Puesto: "1", HorasExt: "5", NYA: "Juan Perez"},
-    {Legajo : "2", Puesto: "2", HorasExt: "10",NYA: "Manuel Rodas"},
-    {Legajo : "3", Puesto: "3", HorasExt: "5",NYA: "Vaneza Rodriguez",SueldoBasico: "210000"},
-    {Legajo : "4", Puesto: "3", HorasExt: "10",NYA: "Luz Algarate",SueldoBasico: "341880"},
+    {Legajo : "2", Puesto: "2", HorasExt: "10", NYA: "Manuel Rodas"},
+    {Legajo : "3", Puesto: "3", HorasExt: "5", NYA: "Vaneza Rodriguez",SueldoBasico: "210000"},
+    {Legajo : "4", Puesto: "3", HorasExt: "10", NYA: "Luz Algarate",SueldoBasico: "341880"},
     ]
 
 
-
+function sumandoEmpleados (){
+    nuevoLegajos = (Number(listaEmpleado.length) + 1)
+    listaEmpleado.push (new creandoListaEmpleado( nuevoLegajos, puesto, cantidadDeHorasExtras, nombreYApellido, sueldoBrutoFueraDeConv))
+}
 
 
 
@@ -77,23 +95,37 @@ function validacionDePuesto(){
     {
         sueldoBrutoFueraDeConv = Number(prompt("Ingrese el salario bruto en Pesos ($):"))
         ingreseHorasExtras()
-        liquidacionFueraDeConvenio()
         
     }
     else if (puesto == 2){
         ingreseHorasExtras()
-        liquidacionDirectorTecnico()
        
     }
     else if (puesto == 1){
         ingreseHorasExtras()
-        liquidacionEmpleadoDeFarmacia()
-       
+      
     }
     else{
         console.log("Usted no ha seleccionado una opcción valida. Vuelva a intentar")
         solicitarPuesto()
     } 
+}
+
+
+function validacionDePuestoLiquidacion(){
+    if (puesto == 3)
+    {
+        liquidacionFueraDeConvenio()
+        
+    }
+    else if (puesto == 2){
+        liquidacionDirectorTecnico()
+       
+    }
+    else if (puesto == 1){
+        liquidacionEmpleadoDeFarmacia()
+       
+    }
 }
       
 
@@ -101,21 +133,56 @@ function validacionDePuesto(){
 function seleccionTipoDeLiquidacion(){
     console.log("1) Liquidar sueldo de forma manual")
     console.log("2) Liquidar sueldos de forma masiva (para empleados ya registrados)")
+    console.log("3) Agregar nuevos empleados a la base de datos")
+    console.log("4) Consultar Empleados registrados")
     let tipoDeLiquidacion = prompt("Ingrese el número de la opción deseada:")
 
     if (tipoDeLiquidacion == 1){
         solicitarDatosEmpleados()
+        validacionDePuestoLiquidacion()
     }
     else if (tipoDeLiquidacion == 2){
         console.log("Iniciando Liquidación de toda la nómina de empleados:")
         liquidacionMasiva ()
+        const fecha = new Date()
+        console.log("La liquidación fue realizada el : " + fecha.toLocaleDateString())
         console.log("La liquidación masiva ha Finalizado. Seleccione que accioón quiere realizar ahora.")
         seleccionTipoDeLiquidacion()
     }
+    else if (tipoDeLiquidacion == 3){
+        console.log("Agregando empleados nuevos a la base de datos:")
+        solicitarDatosEmpleados()
+        sumandoEmpleados ()
+        console.log("Se ha agregado exitosamente a " + nombreYApellido.toUpperCase() )    
+        seleccionTipoDeLiquidacion()
+    }
+    else if (tipoDeLiquidacion == 4){
+        console.log("Los Empleados registrados hasta el dia de hoy son:")
+        consultaDeEmpleados ()
+        seleccionTipoDeLiquidacion()
+    }
+
     else {
         console.log("Usted no ha seleccionado una opcción valida. Vuelva a intentar")
         seleccionTipoDeLiquidacion()
 
+    }
+
+}
+
+// funcion consulta de empleados registrados
+function consultaDeEmpleados (){
+    const consultandoBaseDeDatos = listaEmpleado.map ((resu) =>{
+        return {
+            Legajo : resu.Legajo,
+            NYA : resu.NYA,
+            Puesto : resu.Puesto,
+            SueldoBasico : resu.SueldoBasico
+            }
+        }
+    )
+    for (const persona of consultandoBaseDeDatos ){
+        console.log ((persona.Legajo) + " " + (persona.NYA) + " " + (persona.Puesto) + " " + (persona.SueldoBasico))
     }
 
 }
@@ -127,16 +194,19 @@ function liquidacionMasiva(){
         if (listaEmpleado[i].Puesto == 1){
             cantidadDeHorasExtras = Number(listaEmpleado[i].HorasExt)
             nombreYApellido = listaEmpleado[i].NYA
+            numeroDeLegajo = listaEmpleado[i].Legajo
             liquidacionEmpleadoDeFarmaciaMasiva ()
         }
         else if(listaEmpleado[i].Puesto == 2) {
             cantidadDeHorasExtras = Number(listaEmpleado[i].HorasExt)
             nombreYApellido = listaEmpleado[i].NYA
+            numeroDeLegajo = listaEmpleado[i].Legajo
             liquidacionDirectorTecnicoMasiva ()
         }
         else if(listaEmpleado[i].Puesto == 3) {
             cantidadDeHorasExtras = Number(listaEmpleado[i].HorasExt)
             nombreYApellido = listaEmpleado[i].NYA
+            numeroDeLegajo = listaEmpleado[i].Legajo
             sueldoBrutoFueraDeConv = Number(listaEmpleado[i].SueldoBasico)
             liquidacionFueraDeConvenioMasiva ()
         }
@@ -358,6 +428,7 @@ function liquidacionFueraDeConvenioMasiva (){
     calculoTotalDescuentos()
     CalculoSueldoNeto()
     console.log("Liquidación de: " + nombreYApellido + ", en el puesto fuera de convenio.")
+    console.log("Legajo: " + numeroDeLegajo)
     console.log("Sueldo Bruto: " + sueldoBrutoFueraDeConv)
     console.log("Monto Horas Extras: " + horasExtrasBruto)
     console.log("Los descuentos que se haran son los siguientes: ")

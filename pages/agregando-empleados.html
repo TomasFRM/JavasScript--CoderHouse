@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
+    <!-- CDN Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <!-- cdn Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <meta name="description" content="Granjas Mazu, una nueva forma de comprar, directo del productor a tu casa. Ponete en contacto con nosotros para obtener más informacion o hacer pedidos.">
+    <meta name="keywords"  content="granjas, granja, mazu, grnajas mazu, carnes, vaca, pollo, cerdo, fiambre, huevos,campo, productos, agricolas, contacto, pedidos, mail, mapa, ubicacion">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+    <link rel="stylesheet" href="../css/estilos.css">
+    <link rel="shortcut icon" href="../imagenes/logo-favicon-32x32.png">
+    <title>Granjas Mazu - Contacto</title>
+</head>
+<body class="container-fluid BodyOverflowX">
+    
+<!--Cabecera-->
+
+    <header>
+      <nav class="navbar navbar-expand-lg bg-light">
+          <div class="container-fluid BgcH">
+            <a class="navbar-brand d-inline-block align-text-top  ps-2" href="../index.html"><img src="../imagenes/logogm.png" class="LogoImg" alt="Logo" > Granjas Mazu</a>
+            <button class="navbar-toggler me-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end pe-2" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="../index.html">Home</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./liquidacion-manual.html"">Liquidación Manual</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./liquidacion-masiva.html">Liquidación Masiva</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./agregando-empleados.html">Agregar Empleado</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="./consulta-de-empleados.html">Consulta de Empleados</a>
+                </li>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+    </header>
+
+    <main class=" pb-2 BackImgAni BodyBackgroundColor">
+      <div class="imgPrincipal">
+        <img src="../imagenes/slider_sueldos_arg.jpg" alt="Liquidador de Sueldos" class="img-fluid">
+        <div class="texto-encima col-md-5 col-12 ">Agregando Empleados a la Base de Datos</div> 
+      </div>
+        <div class="row ms-2 me-2">
+            <div class="col-md-6">
+              <!-- FORMULARIO -->
+                <form class="row g-3">
+                    <legend>Formulario de Alta de Empleados:</legend>
+                    <div class="col-12">
+                    <label for="Nombre" class="form-label fw-bold">Nombre y Apellido</label>
+                    <input type="text" id="Nombre" placeholder="Ingrese el Nombre completo seguido del Apellido" class="form-control">
+                    </div>
+                    <div class="col-12">
+                        <label for="Email" class="form-label fw-bold">Selección de Puesto</label>
+                        <select name="Puesto" id="Puesto">
+                          <option value="1">Empleado de Farmacia</option>
+                          <option value="2">Director Técnico</option>
+                          <option value="3">Empleado fuera de Convenio</option>
+                        </select>
+                    </div>
+                    <div class="col-12">
+                        <label for="Numtel" class="form-label fw-bold" > Sueldo Básico </label>
+                        <input type="text" id="Numtel" placeholder="Solo completar si es un empleado fuera de convenio" class="form-control">
+                    </div>
+                    <div class="col-12">
+                        <label for="Asunto" class="form-label fw-bold" > Cantidad de horas extras</label>
+                        <input type="text" id="Asunto" placeholder="Ingrese el numero de horas extrar realizadas" class="form-control">
+                    </div>
+
+                    <div class="col-12">
+                    <button type="submit" class="btn btn-primary fw-bold">Enviar</button>
+                    </div>
+                </form>
+            </div>
+            <div class="col d-flex align-items-center col-md-6 pe-2 ps-3">
+                <div class="col">
+                    <div class="row pb-5 ">
+                        <h2>Tutorial para agregar empleados:</h2>
+                    </div>
+                    <!-- Mapa de ubicacion -->
+                    <div class="row  animate__animated animate__zoomIn">
+                        <iframe src="https://www.youtube.com/embed/gkTb9GP9lVI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" width=100% height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+
+
+    <footer class="container-fluid pt-2 ">
+        <div class="d-flex row text-center align-items-center">
+          <section class="col">
+            <ul class="FormatoLi">
+              <li><a href="../index.html"><img src="../imagenes/logogm.png" alt="Logo" class="LogoImg"></a></li>
+              <li> <p >Copyright Tomas F. Rodriguez</p>  </li>
+            </ul>
+          </section>
+          <section class="col me-2" >
+              <ul class="FormatoLi text-center">
+                  <li>Telefono: 011-4790-7632</li>
+                  <li>Mail: info@granjasmazu.com.ar</li>
+                  <li>Dirección: Av. Mapiu 2547 , Vicente Lopez - Buenos Aires (oficina central)</li>
+              </ul>
+          </section>
+          <section class="col ">
+              <ul class="FormatoLi pe-3 row">
+                <li class="col"><a href="https://www.youtube.com/channel/UCeHReBIekZ9Etwixu1LZOBQ" target="_blank"><i class="bi bi-youtube fs-1"></i></a></li>
+                <li class="col"><a href="https://www.instagram.com/tomas_rodriguezmaziere/" target="_blank"><i class="bi bi-instagram fs-1"></i></a></li>
+                <li class="col"><a href="https://www.facebook.com/tomas.rodriguezmaziere" target="_blank"><i class="bi bi-facebook fs-1"></i></a></li>
+              </ul>
+          </section>
+        </div>
+      </footer>
+          
+          <!-- JavaScript Bundle with Popper -->
+          <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+      
+      </body>
+      </html>

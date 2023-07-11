@@ -1,0 +1,30 @@
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+
+.BodyBackgroundColor{
+    background-color: map-get($background-color , "body" ); 
+  }
+
+.LogoImg{
+    height: 90px;
+}
+
+.container-fluid{
+    padding-left: 0rem;
+    padding-right: 0rem;
+}
+
+body{
+    width: 100vw;
+}
+
+
+
+.row{
+    margin-right: 0px;
+    margin-left: 0px;
+    --bs-gutter-x: opx;
+}
