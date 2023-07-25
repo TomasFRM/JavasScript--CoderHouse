@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="../css/estilos.css">
     <link rel="shortcut icon" href="../imagenes/logo-favicon-32x32.png">
     <script src="../js/main.js" defer></script>
-    <title>Liquidador de Sueldos - Consulta de EMpleados Registrados</title>
+    <title>Liquidador de Sueldos - Planilla de liquidaciones</title>
 </head>
 <body class="container-fluid " >
     
@@ -58,28 +58,16 @@
       <section class="row mb-2">
         <div class="imgPrincipal">
           <img src="../imagenes/slider_sueldos_arg.jpg" alt="Liquidador de Sueldos" class="img-fluid">
-          <div class="texto-encima col-md-5 col-12 ">Empleados Registrados en la Base de Datos</div> 
+          <div class="texto-encima col-md-5 col-12 ">Planillas de Liquidaciones</div> 
         </div>
       </section>
 
       <div class="row justify-content-center pt-5 pb-5">
-        <button type="button" class="btn btn-primary fw-bold" id="consultarEmpleadosBTN">Consutlar Empleados</button>
-        <table class="table text-center table-striped">
-          <thead>
-            <tr>
-              
-              <th scope="col"><strong>Legajo</strong></th>
-              <th scope="col"><strong>Empleado</strong></th>
-              <th scope="col"><strong>Puesto</strong></th>
-              <th scope="col"><strong>Sueldo Base</strong></th>
-            </tr>
-          </thead>
+        <button type="button" class="btn btn-primary fw-bold" id="verLiquiBTN">Ver Liquidaciones</button>
+        <div id="ListLiqui" class="text-center ">
 
-          <tbody class="ListEmpReg">
+        </div>
 
-          </tbody>
-
-        </table>
       </div>
 
     </main>

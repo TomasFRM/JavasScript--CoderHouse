@@ -2,6 +2,17 @@
   margin: 0px;
   padding: 0px; }
 
+#consultarEmpleadosBTN {
+  max-width: 80%;
+  background-color:red
+}
+
+#verLiquiBTN{
+  max-width: 80%;
+  background-color:red
+}
+
+
 .BodyBackgroundColor {
   background-color: #e6e5e5; }
 

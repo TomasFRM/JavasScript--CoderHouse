@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="../css/estilos.css">
     <link rel="shortcut icon" href="../imagenes/logo-favicon-32x32.png">
-    <title>Granjas Mazu - Contacto</title>
+    <script src="../js/main.js" defer></script> 
+    <title>Liquidador de SUeldos - Agregando Empleados</title>
 </head>
 <body class="container-fluid BodyOverflowX">
     
@@ -25,7 +26,7 @@
     <header>
       <nav class="navbar navbar-expand-lg bg-light">
           <div class="container-fluid BgcH">
-            <a class="navbar-brand d-inline-block align-text-top  ps-2" href="../index.html"><img src="../imagenes/logogm.png" class="LogoImg" alt="Logo" > Granjas Mazu</a>
+            <a class="navbar-brand d-inline-block align-text-top  ps-2" href="../index.html"><img src="../imagenes/logogm.png" class="LogoImg" alt="Logo" > Liquidador de Sueldos</a>
             <button class="navbar-toggler me-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -65,11 +66,11 @@
                     <legend>Formulario de Alta de Empleados:</legend>
                     <div class="col-12">
                     <label for="Nombre" class="form-label fw-bold">Nombre y Apellido</label>
-                    <input type="text" id="Nombre" placeholder="Ingrese el Nombre completo seguido del Apellido" class="form-control">
+                    <input type="text" id="NombreAE" placeholder="Ingrese el Nombre completo seguido del Apellido" class="form-control">
                     </div>
                     <div class="col-12">
                         <label for="Email" class="form-label fw-bold">Selección de Puesto</label>
-                        <select name="Puesto" id="Puesto">
+                        <select name="Puesto" id="PuestoAE">
                           <option value="1">Empleado de Farmacia</option>
                           <option value="2">Director Técnico</option>
                           <option value="3">Empleado fuera de Convenio</option>
@@ -77,15 +78,15 @@
                     </div>
                     <div class="col-12">
                         <label for="Numtel" class="form-label fw-bold" > Sueldo Básico </label>
-                        <input type="text" id="Numtel" placeholder="Solo completar si es un empleado fuera de convenio" class="form-control">
+                        <input type="text" id="NumtelAE" placeholder="Solo completar si es un empleado fuera de convenio" class="form-control">
                     </div>
                     <div class="col-12">
                         <label for="Asunto" class="form-label fw-bold" > Cantidad de horas extras</label>
-                        <input type="text" id="Asunto" placeholder="Ingrese el numero de horas extrar realizadas" class="form-control">
+                        <input type="text" id="HorasExtrasAE" placeholder="Ingrese el numero de horas extrar realizadas" class="form-control">
                     </div>
 
                     <div class="col-12">
-                    <button type="submit" class="btn btn-primary fw-bold">Enviar</button>
+                    <button type="button" class="btn btn-primary fw-bold" id="sumarEmpleadoID">Enviar</button>
                     </div>
                 </form>
             </div>
@@ -96,7 +97,7 @@
                     </div>
                     <!-- Mapa de ubicacion -->
                     <div class="row  animate__animated animate__zoomIn">
-                        <iframe src="https://www.youtube.com/embed/gkTb9GP9lVI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" width=100% height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                        <iframe src="https://www.youtube.com/embed/npFE7NIy574" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" width=100% height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>

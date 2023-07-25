@@ -16,7 +16,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="../css/estilos.css">
     <link rel="shortcut icon" href="../imagenes/logo-favicon-32x32.png">
-    <title>Granjas Mazu - Contacto</title>
+    <script src="../js/main.js" defer></script> 
+    <title>Liquidador de Sueldos - Liquidacion Masiva</title>
 </head>
 <body class="container-fluid BodyOverflowX">
     
@@ -25,7 +26,7 @@
     <header>
       <nav class="navbar navbar-expand-lg bg-light">
           <div class="container-fluid BgcH">
-            <a class="navbar-brand d-inline-block align-text-top  ps-2" href="../index.html"><img src="../imagenes/logogm.png" class="LogoImg" alt="Logo" > Granjas Mazu</a>
+            <a class="navbar-brand d-inline-block align-text-top  ps-2" href="../index.html"><img src="../imagenes/logogm.png" class="LogoImg" alt="Logo" > Liquidador de Sueldos</a>
             <button class="navbar-toggler me-5" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -65,7 +66,7 @@
                 <p> Aquí puede seleccionar el tipo de liquidación masiva que desea realizar. Puede realizar una liquidación general o por puesto.</p>
                 <div class="col-12">
                   <label for="Email" class="form-label fw-bold">Selección de Puesto para realizar liquidación masiva</label>
-                  <select name="Puesto" id="Puesto">
+                  <select name="Puesto" id="PuestoLiquidacionMasivaID">
                     <option value="1">Empleado de Farmacia</option>
                     <option value="2">Director Técnico</option>
                     <option value="3">Empleado fuera de Convenio</option>
@@ -73,7 +74,8 @@
                   </select>
                 </div>
                 <div class="col-12">
-                  <button type="submit" class="btn btn-primary fw-bold">Comenzar Liquidación</button>
+                  <!-- <button type="button" class="btn btn-primary fw-bold" id="botonLiquidacionMasivaID" >Comenzar Liquidación</button> -->
+                  <a href="./planilla-liquidaciones.html" class="btn btn-primary" id="botonLiquidacionMasivaID" target="_blank">Comenzar Liquidación</a>
                 </div>
               </div>
 
@@ -84,12 +86,17 @@
                     <div class="row pb-5 ">
                         <h2>Tutorial para liquidar Masivamente:</h2>
                     </div>
-                    <!-- Mapa de ubicacion -->
                     <div class="row  animate__animated animate__zoomIn">
                       <iframe src="https://www.youtube.com/embed/gkTb9GP9lVI" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" width=100% height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
             </div>
+        </div>
+        <div id="planillaLiquidacionMasiva">
+
+        </div>
+
+
         </div>
     </main>
 
