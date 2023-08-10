@@ -631,8 +631,8 @@ function notificacionNoEsUnNumero2(){
 function notificacionBaseDeDatos(){
     Swal.fire({
         icon: 'error',
-        title: 'Oops...',
-        text: 'Hubieron problemas al obtener la información de la base de datos. Vuelva a intentar.',
+        title: 'Hay demoras en la carga de datos...',
+        text: 'En unos instantes se terminara de cargar los datos.',
              })
 }
 
