@@ -125,7 +125,7 @@ legend {
     display: none; } }
 
 .table {
-  width: 90vw;
+  width: 80vw;
   font-weight: 700;
   color: black;
   background: linear-gradient(90deg, #dfffc1 0%, #4bffaa 48%, #34f7dd 100%); }
@@ -285,4 +285,5 @@ path#XMLID_11_, path#XMLID_2_ {
     margin-bottom: 10px;
     margin-top: 10px;
   }
+
 

@@ -1,0 +1,7 @@
+[
+    {"Legajo" : "1", "Puesto": "1", "HorasExt": "5", "NYA": "Juan Perez" , "SueldoBasico": "195000"},
+    {"Legajo" : "2", "Puesto": "2", "HorasExt": "10", "NYA": "Manuel Rodas", "SueldoBasico": "280000"},
+    {"Legajo" : "3", "Puesto": "3", "HorasExt": "5", "NYA": "Vaneza Rodriguez","SueldoBasico": "210000"},
+    {"Legajo" : "4", "Puesto": "3", "HorasExt": "10", "NYA": "Luz Algarate","SueldoBasico": "341880"},
+    {"Legajo" : "5", "Puesto": "2", "HorasExt": "5", "NYA": "Veronica Zans","SueldoBasico": "280000"}   
+    ]

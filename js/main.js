@@ -33,8 +33,25 @@ let sueldoBasico = 0
 let tablaDeLiquidaciones = ""
 let tablaDeConsultaDeEmpleados = ""
 let listaLiquidacion = []
+let select= 0
+let puestoSeleccionadoLiquidacionMasiva = 0
+let listaEmpleadosFiltrado = 0
+let contenedorPlanillaLiquidacionMasiva = 0
+let sueldoBrutoFueraDeConvContainer=0
+let listaEmpleado = []
 
+//Consulta Inicial a archivo Json simulando base de datos
 
+async function consultaDeEmpleadosInicial(){
+    if (listaEmpleado.length === 0){
+        try{
+         let recuperoListaEmpleadosJson = await fetch("../datos/datos.json");      
+         listaEmpleado = await recuperoListaEmpleadosJson.json()
+        }
+        catch(error){notificacionBaseDeDatos()}
+    }
+}
+consultaDeEmpleadosInicial()
 //Array y constructor de lista de empleados-------------------------------------------------
 
 class creandoListaEmpleado {
@@ -47,26 +64,24 @@ class creandoListaEmpleado {
     };
 }
 
-let listaEmpleado = [
-    {Legajo : "1", Puesto: "1", HorasExt: "5", NYA: "Juan Perez" , SueldoBasico: "195000"},
-    {Legajo : "2", Puesto: "2", HorasExt: "10", NYA: "Manuel Rodas", SueldoBasico: "280000"},
-    {Legajo : "3", Puesto: "3", HorasExt: "5", NYA: "Vaneza Rodriguez",SueldoBasico: "210000"},
-    {Legajo : "4", Puesto: "3", HorasExt: "10", NYA: "Luz Algarate",SueldoBasico: "341880"},
-    ]
 
 
 
-function sumandoEmpleados (){
-    let recuperoListaEmpleados = localStorage.getItem('storageListaEmpleados');
-    if (recuperoListaEmpleados != null){
-        listaEmpleado= JSON.parse(recuperoListaEmpleados)
-    }
-    nuevoLegajos = (Number(listaEmpleado.length) + 1)
-    listaEmpleado.push (new creandoListaEmpleado( nuevoLegajos, puesto, cantidadDeHorasExtras, nombreYApellido, sueldoBasico))
-    let listaEmpleadosStringify = JSON.stringify(listaEmpleado)
-    localStorage.setItem("storageListaEmpleados", listaEmpleadosStringify)
 
-}
+ function sumandoEmpleados (){
+   let recuperoListaEmpleados = localStorage.getItem('storageListaEmpleados');
+   if (recuperoListaEmpleados != null){
+       listaEmpleado= JSON.parse(recuperoListaEmpleados)
+   }
+   nuevoLegajos = (Number(listaEmpleado.length) + 1)
+   listaEmpleado.push (new creandoListaEmpleado( nuevoLegajos, puesto, cantidadDeHorasExtras, nombreYApellido, sueldoBasico))
+   let listaEmpleadosStringify = JSON.stringify(listaEmpleado)
+   localStorage.setItem("storageListaEmpleados", listaEmpleadosStringify)
+ }
+
+
+
+
 
 //array para liquidar--------------------------------------------------------------------------
 
@@ -96,21 +111,17 @@ function sumandoLiquidaciones (){
         if (recuperoListaLiquidaciones != null){
             listaLiquidacion = JSON.parse(recuperoListaLiquidaciones)
         }
-        listaLiquidacion.push (new creandoArrayLiquidacion( nombreYApellido, puesto, sueldoBrutoFueraDeConv, horasExtrasBruto, aportesJubilacion,aportePami,aporteOOSS,totalDescuentos,sueldoNeto,))
-        //falta sumar legajo
+        listaLiquidacion.push (new creandoArrayLiquidacion( nombreYApellido, puesto, sueldoBrutoFueraDeConv, horasExtrasBruto, aportesJubilacion,aportePami,aporteOOSS,totalDescuentos,sueldoNeto,0, 0))
         let listaLiquidacionesStringify = JSON.stringify (listaLiquidacion)
         localStorage.setItem("storageListaLiquidaciones", listaLiquidacionesStringify)
         listaLiquidacion= []
-        console.log(listaLiquidacion)
-
     }
     else if ( puesto == 1){
         let recuperoListaLiquidaciones = localStorage.getItem('storageListaLiquidaciones')
         if (recuperoListaLiquidaciones != null){
             listaLiquidacion = JSON.parse(recuperoListaLiquidaciones)
         }
-        listaLiquidacion.push (new creandoArrayLiquidacion( nombreYApellido, puesto, sueldoBrutoEmpleadoDeFarmacia, horasExtrasBruto, aportesJubilacion,aportePami,aporteOOSS,totalDescuentos,sueldoNeto,adicionalTitulo,aporteCuotaSindical))
-        //falta sumar legajo 
+        listaLiquidacion.push (new creandoArrayLiquidacion( nombreYApellido, puesto, sueldoBrutoEmpleadoDeFarmacia, horasExtrasBruto, aportesJubilacion,aportePami,aporteOOSS,totalDescuentos,sueldoNeto,0,aporteCuotaSindical))
         let listaLiquidacionesStringify = JSON.stringify (listaLiquidacion)
         localStorage.setItem("storageListaLiquidaciones", listaLiquidacionesStringify)
         listaLiquidacion= []
@@ -151,38 +162,33 @@ function calculoDeHorasExtras (){
     }
 }
 
+//Funcion para consultar empleados
 
-// funcion consulta de empleados registrados--------------------------------------------------------------------
-function consultaDeEmpleados (){
-    let recuperoListaEmpleados2 = localStorage.getItem('storageListaEmpleados');
-    if(recuperoListaEmpleados2 != null){
-        listaEmpleado= JSON.parse(recuperoListaEmpleados2)
-    }    
-    const consultandoBaseDeDatos = listaEmpleado.map ((resu) =>{
-        return {
-            Legajo : resu.Legajo,
-            NYA : resu.NYA,
-            Puesto : resu.Puesto,
-            SueldoBasico : resu.SueldoBasico
-            }
-        }
-    )
-    let container = document.querySelector(".ListEmpReg")
-    container.innerHTML = ""
-    for (const persona of consultandoBaseDeDatos ){
-        container = document.querySelector(".ListEmpReg")
-        tablaDeConsultaDeEmpleados = document.createElement("tr");
-        tablaDeConsultaDeEmpleados.innerHTML = "<td>" + persona.Legajo + "</td> <td>" + persona.NYA + "</td><td>" + persona.Puesto + "</td><td>" + persona.SueldoBasico + "</td>";
-        container.appendChild(tablaDeConsultaDeEmpleados);
+ function consultaDeEmpleados (){
+     let recuperoListaEmpleados2 = localStorage.getItem('storageListaEmpleados');
+     if(recuperoListaEmpleados2 != null){
+         listaEmpleado= JSON.parse(recuperoListaEmpleados2)
+     }    
+     const consultandoBaseDeDatos = listaEmpleado.map ((resu) =>{
+         return {
+             Legajo : resu.Legajo,
+             NYA : resu.NYA,
+             Puesto : resu.Puesto,
+             SueldoBasico : resu.SueldoBasico
+             }
+         }
+     )
+     let container = document.querySelector(".ListEmpReg")
+     container.innerHTML = ""
+     for (const persona of consultandoBaseDeDatos ){
+         container = document.querySelector(".ListEmpReg")
+         tablaDeConsultaDeEmpleados = document.createElement("tr");
+         tablaDeConsultaDeEmpleados.innerHTML = "<td>" + persona.Legajo + "</td> <td>" + persona.NYA + "</td><td>" + persona.Puesto + "</td><td>" + persona.SueldoBasico + "</td>";
+         container.appendChild(tablaDeConsultaDeEmpleados);
+     }
+ }
 
-
-
-
-    }
-
-}
-
-//funcion liquidacion Masiva con BUCLE FOR------------------------------------------------------------
+//funcion liquidacion Masiva
 
 function liquidacionMasiva(){
   listaLiquidacion = []
@@ -211,7 +217,7 @@ function liquidacionMasiva(){
 
 }
 
-//Funciones de sueldo -----------------------------------------------------------------------------
+//Funciones de sueldo
 
 function calculoAdicionalTitulo(){
     adicionalTitulo = sueldoBrutoDirectorTecnicaFarmacia * adicionalTituloGen
@@ -361,17 +367,9 @@ function liquidacionFueraDeConvenio (){
     calculoTotalContribuciones()
     calculoTotalDescuentos()
     CalculoSueldoNeto()
-    console.log("Liquidación de: " + nombreYApellido + ", en el puesto fuera de convenio.")
-    console.log("Sueldo Bruto: " + sueldoBrutoFueraDeConv)
-    console.log("Monto Horas Extras: " + horasExtrasBruto)
-    console.log("Los descuentos que se haran son los siguientes: ")
-    console.log("Aportes de Jublicación: " + aportesJubilacion)
-    console.log("Aportes para el Pami: " + aportePami)
-    console.log("Aportes para las OOSS: " + aporteOOSS)
-    console.log("Total descuentos: " + totalDescuentos)
-    console.log("Sueldo Neto a cobrar: " + sueldoNeto)
-    console.log("La opreacion ha finalizado exitosamente")
-    
+    let tablaDeLiquidacion=""
+    let containerLiqMan =document.querySelector("#liquiManual")
+    containerLiqMan.innerHTML='<div class="row justify-content-center pt-5 pb-5 "><table class="table  table-striped m-5" ><thead class="table-light"><tr><th scope="col" class="w-50"><strong>Concepto</strong></th><th scope="col" class="w-50"><strong>Valor</strong></th></tr></thead><tbody>' + '<tr><td>Nombre</td><td>' + nombreYApellido +'</td></tr>'+ '<tr><td>Puesto</td><td>' + puesto +'</td></tr>'+ '<tr><td>SueldoBásico</td><td>' + sueldoBrutoFueraDeConv +'</td></tr>'+ '<tr><td>Horas Extras Bruto</td><td>' + horasExtrasBruto +'</td></tr>'+ '<tr><td>Aportes Jubilacón</td><td>' + aportesJubilacion+ '</td></tr>'+ '<tr><td>Aportes Pami</td><td>' + aportesJubilacion +'</td></tr>'+ '<tr><td>Aportes OOSS</td><td>' + aporteOOSS +'</td></tr>' + '<tr><td class="table-danger">Total Descuentos</td><td class="table-danger">' + totalDescuentos +'</td></tr>'+ '<tr><td class="table-dark">Sueldo Neto</td><td class="table-dark">' + sueldoNeto +'</td></tr></tbody></table></div>'   
 }
 
 function liquidacionEmpleadoDeFarmacia (){
@@ -386,17 +384,10 @@ function liquidacionEmpleadoDeFarmacia (){
     calculoTotalContribuciones()
     calculoTotalDescuentos()
     CalculoSueldoNeto()
-    console.log("Liquidación de: " + nombreYApellido + ", en el puesto de Empleado de Farmacia")
-    console.log("Sueldo Bruto: " + sueldoBrutoEmpleadoDeFarmacia)
-    console.log("Monto Horas Extras: " + horasExtrasBruto)
-    console.log("Los descuentos que se haran son los siguientes: ")
-    console.log("Aportes de Jublicación: " + aportesJubilacion)
-    console.log("Aportes para el Pami: " + aportePami)
-    console.log("Aportes para las OOSS: " + aporteOOSS)
-    console.log("Aportes para el sindicato: " + aporteCuotaSindical)
-    console.log("Total descuentos: " + totalDescuentos)
-    console.log("Sueldo Neto a cobrar: " + sueldoNeto)
-    console.log("La opreacion ha finalizado exitosamente")
+    let tablaDeLiquidacion=""
+    let containerLiqMan =document.querySelector("#liquiManual")
+    containerLiqMan.innerHTML='<div class="row justify-content-center pt-5 pb-5 "><table class="table  table-striped m-5" ><thead class="table-light"><tr><th scope="col" class="w-50"><strong>Concepto</strong></th><th scope="col" class="w-50"><strong>Valor</strong></th></tr></thead><tbody>' + '<tr><td>Nombre</td><td>' + nombreYApellido +'</td></tr>'+ '<tr><td>Puesto</td><td>' + puesto +'</td></tr>'+ '<tr><td>SueldoBásico</td><td>' + sueldoBrutoEmpleadoDeFarmacia +'</td></tr>'+ '<tr><td>Horas Extras Bruto</td><td>' + horasExtrasBruto +'</td></tr>' +'<tr><td>Adicional Titulo</td><td>' + adicionalTitulo +'</td></tr>' + '<tr><td>Aportes Jubilacón</td><td>' + aportesJubilacion+ '</td></tr>' + '<tr><td>Aportes Pami</td><td>' + aportesJubilacion +'</td></tr>'+ '<tr><td>Aportes OOSS</td><td>' + aporteOOSS +'</td></tr>'+ '<tr><td>Aporte Cuota Sindical</td><td>' + aporteCuotaSindical +'</td></tr>'+ '<tr><td class="table-danger">Total Descuentos</td><td class="table-danger">' + totalDescuentos +'</td></tr>'+ '<tr><td class="table-dark">Sueldo Neto</td><td class="table-dark">' + sueldoNeto +'</td></tr></tbody></table></div>' 
+    
     
 }
 
@@ -413,19 +404,10 @@ function liquidacionDirectorTecnico (){
     calculoTotalContribuciones()
     calculoTotalDescuentos()
     CalculoSueldoNeto()
-    console.log("Liquidación de: " + nombreYApellido + ", en el puesto de Director Técnico de Farmacia.")
-    console.log("Sueldo Bruto: " + sueldoBrutoDirectorTecnicaFarmacia)
-    console.log("Monto Horas Extras: " + horasExtrasBruto)
-    console.log("Monto Adicional Título: " + adicionalTitulo)
-    console.log("Los descuentos que se haran son los siguientes: ")
-    console.log("Aportes de Jublicación: " + aportesJubilacion)
-    console.log("Aportes para el Pami: " + aportePami)
-    console.log("Aportes para las OOSS: " + aporteOOSS)
-    console.log("Aportes para el sindicato: " + aporteCuotaSindical)
-    console.log("Total descuentos: " + totalDescuentos)
-    console.log("Sueldo Neto a cobrar: " + sueldoNeto)
-    console.log("La opreacion ha finalizado exitosamente")
-    
+    let tablaDeLiquidacion=""
+    let containerLiqMan =document.querySelector("#liquiManual")
+    containerLiqMan.innerHTML='<div class="row justify-content-center pt-5 pb-5 "><table class="table  table-striped m-5 " ><thead class="table-light"><tr><th scope="col" class="w-60"><strong>Concepto</strong></th><th scope="col" class="w-40"><strong>Valor</strong></th></tr></thead><tbody>' + '<tr><td>Nombre</td><td>' + nombreYApellido +'</td></tr>'+ '<tr><td>Puesto</td><td>' + puesto +'</td></tr><tr><td>SueldoBásico</td><td>' + sueldoBrutoDirectorTecnicaFarmacia +'</td></tr>'+ '<tr><td>Horas Extras Bruto</td><td>' + horasExtrasBruto +'</td></tr>'   +'<tr><td>Adicional Titulo</td><td>' + adicionalTitulo +'</td></tr>' + '<tr><td>Aportes Jubilacón</td><td>' + aportesJubilacion+ '</td></tr>' + '<tr><td>Aportes Pami</td><td>' + aportesJubilacion +'</td></tr>'+ '<tr><td>Aportes OOSS</td><td>' + aporteOOSS +'</td></tr>'+ '<tr><td>Aporte Cuota Sindical</td><td>' + aporteCuotaSindical +'</td></tr>'+ '<tr><td class="table-danger">Total Descuentos</td><td class="table-danger">' + totalDescuentos +'</td></tr>'+ '<tr><td class="table-dark">Sueldo Neto</td><td class="table-dark">' + sueldoNeto +'</td></tr></tbody></table></div>' 
+
 }
 
 // liquidacion masiva
@@ -441,9 +423,8 @@ function liquidacionFueraDeConvenioMasiva (){
     calculoTotalContribuciones()
     calculoTotalDescuentos()
     CalculoSueldoNeto()
-
-    sumandoLiquidaciones () 
     
+    sumandoLiquidaciones ()    
 }
 
 function liquidacionEmpleadoDeFarmaciaMasiva (){
@@ -459,7 +440,6 @@ function liquidacionEmpleadoDeFarmaciaMasiva (){
     calculoTotalContribuciones()
     calculoTotalDescuentos()
     CalculoSueldoNeto()
-
     sumandoLiquidaciones ()
 }
 
@@ -477,40 +457,14 @@ function liquidacionDirectorTecnicoMasiva (){
     calculoTotalContribuciones()
     calculoTotalDescuentos()
     CalculoSueldoNeto()
-
     sumandoLiquidaciones () 
     
 }
 
 
-//Flujo
-//Flujo
 
 
- //LIQUIDACION MASIVA INICIACION 
-let select= 0
-let puestoSeleccionadoLiquidacionMasiva = 0
-let listaEmpleadosFiltrado = 0
-let contenedorPlanillaLiquidacionMasiva = 0
-
-
- 
-const liquidacionMan = document.querySelector('#botonLiquidacionManualID')
-const liquidacionMasi = document.querySelector('#botonLiquidacionMasivaID')
-const agregarEmpleadosBD = document.querySelector('#sumarEmpleadoID')
-const consultarListadoDeEmpleados = document.querySelector('#consultarEmpleadosBTN')
-const verLiquidaciones = document.querySelector("#verLiquiBTN")
-
- document.addEventListener("DOMContentLoaded",() =>{
-    liquidacionMasi?.addEventListener('click', clickLiquidacionMasiva) 
-    liquidacionMan?.addEventListener('click', clickLiquidacionManual)
-    agregarEmpleadosBD?.addEventListener('click', clickAgregarEmpleado)
-    consultarListadoDeEmpleados?.addEventListener('click', consultaDeEmpleados)
-    verLiquidaciones?.addEventListener('click', crearPlanillasDeLiqui)
-
- }
- )
-
+//Liquidacion Masiva
 
  function clickLiquidacionMasiva(){
     select= document.getElementById("PuestoLiquidacionMasivaID")
@@ -525,76 +479,109 @@ const verLiquidaciones = document.querySelector("#verLiquiBTN")
     if (puestoSeleccionadoLiquidacionMasiva == 4){
         puestoSeleccionadoLiquidacionMasiva = ""
     }
-    console.log(puestoSeleccionadoLiquidacionMasiva)
     listaEmpleadosFiltrado = listaEmpleado.filter((el) => el.Puesto.includes(puestoSeleccionadoLiquidacionMasiva))
-    console.log(listaEmpleadosFiltrado)
     liquidacionMasiva()
- 
  }
 
- function crearPlanillasDeLiqui(){
-    let recuperoListaLiquidaciones3 = localStorage.getItem('storageListaLiquidaciones')
-    console.log(listaLiquidacion)///////////////////
-    if (recuperoListaLiquidaciones3 != null){
-        listaLiquidacion = []////////////////////////////////////
-        console.log(listaLiquidacion)///////////////////////
-        listaLiquidacion = JSON.parse(recuperoListaLiquidaciones3)
-    }
+  function crearPlanillasDeLiqui(){
+     let recuperoListaLiquidaciones3 = localStorage.getItem('storageListaLiquidaciones')
+     if (recuperoListaLiquidaciones3 != null){
+         listaLiquidacion = []
+         listaLiquidacion = JSON.parse(recuperoListaLiquidaciones3)
+     }
 
-    let container1 = document.querySelector("#ListLiqui")
-    container1.innerHTML = ""
-    for (const personaLiqui of listaLiquidacion){
-        container1 = document.querySelector("#ListLiqui") 
-        tablaDeLiquidaciones = document.createElement("table");
+     let container1 = document.querySelector("#ListLiqui")
+     container1.innerHTML = ""
+     for (const personaLiqui of listaLiquidacion){
+         container1 = document.querySelector("#ListLiqui") 
+         tablaDeLiquidaciones = document.createElement("div");
+         tablaDeLiquidaciones.innerHTML = '<div class="row justify-content-center pt-5 pb-5 "><table class="table  table-striped m-5" ><thead class="table-light"><tr><th scope="col" class="w-50"><strong>Concepto</strong></th><th scope="col" class="w-50"><strong>Valor</strong></th></tr></thead><tbody>' + '<tr><td>Nombre</td><td>' + personaLiqui.NYA +'</td></tr>'+ '<tr><td>Puesto</td><td>' + personaLiqui.P +'</td></tr>'+ '<tr><td>SueldoBásico</td><td>' + personaLiqui.SB +'</td></tr>'+ '<tr><td>Horas Extras Bruto</td><td>' + personaLiqui.HEB +'</td></tr>'+'<tr><td>Adicional Titulo</td><td>' + personaLiqui.AT +'</td></tr>'  + '<tr><td>Aportes Jubilacón</td><td>' + personaLiqui.AJ+ '</td></tr>' + '<tr><td>Aportes Pami</td><td>' + personaLiqui.AP +'</td></tr>'+ '<tr><td>Aportes OOSS</td><td>' + personaLiqui.AOOSS +'</td></tr>'+ '<tr><td>Aporte Cuota Sindical</td><td>' + personaLiqui.ACS +'</td></tr>'+ '<tr><td class="table-danger">Total Descuentos</td><td class="table-danger">' + personaLiqui.TD +'</td></tr>'+ '<tr><td class="table-dark">Sueldo Neto</td><td class="table-dark">' + personaLiqui.SN +'</td></tr></tbody></table></div>'
+         container1.appendChild(tablaDeLiquidaciones)
 
-        tablaDeLiquidaciones.innerHTML = '<thead class="table text-center table-striped "><tr><th scope="col"><strong>Concepto</strong></th><th scope="col"><strong>Valor</strong></th></tr></thead><tbody>' + '<tr><td>Nombre</td><td>' + personaLiqui.NYA +'</td></tr>'+ '<tr><td>Puesto</td><td>' + personaLiqui.P +'</td></tr>'+ '<tr><td>SueldoBásico</td><td>' + personaLiqui.SB +'</td></tr>'+ '<tr><td>Horas Extras Bruto</td><td>' + personaLiqui.HEB +'</td></tr>'+ '<tr><td>Aportes Jubilacón</td><td>' + personaLiqui.AJ+ '<tr><td>Adicional Titulo</td><td>' + personaLiqui.AT +'</td></tr>' + personaLiqui.AJ +'</td></tr>'+ '<tr><td>Aportes Pami</td><td>' + personaLiqui.AP +'</td></tr>'+ '<tr><td>Aportes OOSS</td><td>' + personaLiqui.AOOSS +'</td></tr>'+ '<tr><td>Aporte Cuota Sindical</td><td>' + personaLiqui.ACS +'</td></tr>'+ '<tr><td>Total Descuentos</td><td>' + personaLiqui.TD +'</td></tr>'+ '<tr><td>Sueldo Neto</td><td>' + personaLiqui.SN +'</td></tr></tbody>'
-        container1.appendChild(tablaDeLiquidaciones)
-    }
-    localStorage.removeItem("storageListaLiquidaciones")
-
-}
-
-
-
-
+     }
+     localStorage.removeItem("storageListaLiquidaciones")
+ }
 
 
 //Liquidacion Manual
 
-
-let sueldoBrutoFueraDeConvContainer=0
 function clickLiquidacionManual(){
     nombreYApellido = document.getElementById("Nombre").value
+    if (nombreYApellido === ""){
+        notificacionNombreVacio()
+        return
+    }
     select = document.getElementById("Puesto")
     puesto = select.options[select.selectedIndex].value
     cantidadDeHorasExtras= Number(document.getElementById("HorasExtrasLM").value)
+    if (isNaN(cantidadDeHorasExtras) ){
+        notificacionNoEsUnNumero1()
+        return
+    }
     if(puesto == 3){
      sueldoBrutoFueraDeConvContainer= document.getElementById("Numtel").value
      sueldoBrutoFueraDeConv= Number(sueldoBrutoFueraDeConvContainer)
-     liquidacionFueraDeConvenio()
+     if (isNaN(sueldoBrutoFueraDeConvContainer) ){
+        notificacionNoEsUnNumero2()
+        return
+    } else {
+        liquidacionFueraDeConvenio()
+        setTimeout(() => {
+            window.scrollTo({
+                top: 1100,
+                left: 1,
+                behavior: "smooth",
+              });
+          }, "500");        
+        }
      }
      else if (puesto == 1){
         liquidacionEmpleadoDeFarmacia()
+        setTimeout(() => {
+            window.scrollTo({
+                top: 1100,
+                left: 1,
+                behavior: "smooth",
+              });
+          }, "500");
      }
      else if(puesto == 2){
         liquidacionDirectorTecnico()
+        setTimeout(() => {
+            window.scrollTo({
+                top: 1100,
+                left: 1,
+                behavior: "smooth",
+              });
+          }, "500");
      }
-
-
 }
 
 //agregando empleado
 
 function clickAgregarEmpleado(){
     nombreYApellido = document.getElementById("NombreAE").value
+    if (nombreYApellido === ""){
+        notificacionNombreVacio()
+        return
+    }
     select = document.getElementById("PuestoAE")
     puesto = select.options[select.selectedIndex].value
     cantidadDeHorasExtras= Number(document.getElementById("HorasExtrasAE").value)
+    if (isNaN(cantidadDeHorasExtras) ){
+        notificacionNoEsUnNumero1()
+        return
+    }
     if(puesto == 3){
-     sueldoBrutoFueraDeConvContainer= document.getElementById("NumtelAE").value
-     sueldoBasico= Number(sueldoBrutoFueraDeConvContainer)
-     sumandoEmpleados ()
-     }
+     sueldoBrutoFueraDeConvContainer= Number(document.getElementById("NumtelAE").value)
+     if (isNaN(sueldoBrutoFueraDeConvContainer) ){
+        notificacionNoEsUnNumero2()
+        return
+    } else{
+        sueldoBasico= sueldoBrutoFueraDeConvContainer
+        sumandoEmpleados ()
+            }
+    }
      else if (puesto == 1){
         sueldoBasico = sueldoBrutoEmpleadoDeFarmacia
         sumandoEmpleados ()
@@ -603,17 +590,71 @@ function clickAgregarEmpleado(){
         sueldoBasico = sueldoBrutoDirectorTecnicaFarmacia
         sumandoEmpleados()
      }
-     console.log (listaEmpleado)
-
+     notificacionExitosaAgregar()     
 }
 
-// FALTA  liquidacion manual:
-    //  leer del formulario, poniendo id a cada campo 
-    //  escuchar evento de click 
-    //  calcular todo creando el array, ver de reutilizar el que ya existe
+//Funciones de Notificaciones  
+
+function notificacionExitosaAgregar(){
+    Swal.fire({
+        position: 'top-end',
+        icon: 'success',
+        title: 'Se ha agregado un empleado nuevo a la base de datos',
+        showConfirmButton: false,
+        timer: 2000
+    })
+}
+
+function notificacionNombreVacio(){
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debe completar el campo del nombre!',
+             })
+}
+
+function notificacionNoEsUnNumero1(){
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debe completar el campo "Cantidad de Horas Extras" con un número!',
+             })
+}
+function notificacionNoEsUnNumero2(){
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Debe completar el campo "Sueldo Básico" con un número!',
+             })
+}
+
+function notificacionBaseDeDatos(){
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Hubieron problemas al obtener la información de la base de datos. Vuelva a intentar.',
+             })
+}
+
+
+ //Iniciacion de Flujos
+ 
+const liquidacionMan = document.querySelector('#botonLiquidacionManualID')
+const liquidacionMasi = document.querySelector('#botonLiquidacionMasivaID')
+const agregarEmpleadosBD = document.querySelector('#sumarEmpleadoID')
+const consultarListadoDeEmpleados = document.querySelector('#consultarEmpleadosBTN')
+const verLiquidaciones = document.querySelector("#verLiquiBTN")
 
 
 
+ document.addEventListener("DOMContentLoaded",() =>{
+    liquidacionMasi?.addEventListener('click', clickLiquidacionMasiva) 
+    liquidacionMan?.addEventListener('click', clickLiquidacionManual)
+    agregarEmpleadosBD?.addEventListener('click', clickAgregarEmpleado)
+    consultarListadoDeEmpleados?.addEventListener('click', consultaDeEmpleados)
+    verLiquidaciones?.addEventListener('click', crearPlanillasDeLiqui)
 
+ }
+ )
 
  
